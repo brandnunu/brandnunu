@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>언론보도 및 수상 - 브랜드누누</title>
+    <meta name="description" content="브랜드누누의 언론보도자료와 수상 내역을 확인하세요. 디지털 마케팅 분야에서의 성과와 인정받은 전문성을 확인할 수 있습니다.">
+    <link rel="stylesheet" href="styles.css?v=20250120_5">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- 모달 함수들을 먼저 정의 -->
+    <script>
+        // 모달 함수들을 즉시 정의하고 전역으로 등록
+        function openModal(modalId) {
+            console.log('openModal 호출됨:', modalId);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                console.log('모달 열림:', modalId);
+            } else {
+                console.log('모달을 찾을 수 없습니다:', modalId, '- 모달 로드 대기 중...');
+                // 모달이 로드될 때까지 대기
+                waitForModal(modalId);
+            }
+        }
+        
+        // 모달이 로드될 때까지 대기하는 함수
+        function waitForModal(modalId) {
+            const checkModal = () => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    console.log('모달 로드 완료 후 열림:', modalId);
+                } else {
+                    // 100ms 후 다시 확인
+                    setTimeout(checkModal, 100);
+                }
+            };
+            checkModal();
+        }
+        
+        function closeModal(modalId) {
+            console.log('closeModal 호출됨:', modalId);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log('모달 닫힘:', modalId);
+            }
+        }
+        
+        // 즉시 전역 함수로 등록
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        console.log('모달 함수 즉시 등록 완료 (head)');
+    </script>
+</head>
+<body>
+
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="브랜드누누" class="logo-image">
+                    </a>
+                </div>
+                
+                <!-- 햄버거 메뉴 버튼 -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="company.html">회사소개</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">마케팅서비스 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="seo-optimization.html">SEO최적화</a></li>
+                                <li><a href="traffic-marketing.html">트래픽유입활성화</a></li>
+                                <li><a href="blog-marketing.html">블로그마케팅</a></li>
+                                <li><a href="sns-marketing.html">SNS인스타그램마케팅</a></li>
+                                <li><a href="video-production.html">홍보영상제작</a></li>
+                                <li><a href="management-team.html">전문관리팀배치</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="product.html">상품안내</a></li>
+                        <li><a href="press.html">언론보도 및 수상</a></li>
+                    </ul>
+                    <a href="#contact" class="quote-btn">견적문의</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 페이지 히어로 섹션 -->
+    <section class="page-hero">
+        <div class="container">
+            <h2>언론보도 및 수상</h2>
+            <p>브랜드누누의 성과와 인정받은 전문성을 확인하세요</p>
+        </div>
+    </section>
+
+    <!-- 언론보도 섹션 -->
+    <section class="press-release">
+        <div class="container">
+            <div class="section-header">
+                <h3>언론보도</h3>
+                <p>주요 언론에서 보도한 브랜드누누의 성과와 전문성</p>
+            </div>
+            
+            <div class="press-slider">
+                <div class="press-slide active" id="press-slide-1">
+                    <img src="img/pressrelease_01.png" alt="언론보도 1" class="press-image">
+                </div>
+                <div class="press-slide" id="press-slide-2">
+                    <img src="img/pressrelease_02.png" alt="언론보도 2" class="press-image">
+                </div>
+                <div class="press-slide" id="press-slide-3">
+                    <img src="img/pressrelease_03.png" alt="언론보도 3" class="press-image">
+                </div>
+            </div>
+            
+            <div class="slider-nav">
+                <button class="nav-btn" onclick="changePressSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentPressSlide(1)" id="press-dot1"></span>
+                    <span class="dot" onclick="currentPressSlide(2)" id="press-dot2"></span>
+                    <span class="dot" onclick="currentPressSlide(3)" id="press-dot3"></span>
+                </div>
+                <button class="nav-btn" onclick="changePressSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 수상 내역 섹션 -->
+    <section class="awards-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>수상 내역</h3>
+                <p>디지털 마케팅 분야에서 인정받은 브랜드누누의 전문성</p>
+            </div>
+
+            <!-- 수상 이미지 슬라이드 -->
+            <div class="awards-slider-container">
+                <div class="slider-title">
+                    <h4>수상 증명서</h4>
+                    <p>브랜드누누의 수상 내역을 확인하세요</p>
+                </div>
+                <div class="awards-slider">
+                    <div class="award-slide" id="award-slide-1">
+                        <img src="img/pressrelease_01.jpg" alt="수상 내역 1" class="award-image" loading="lazy">
+                    </div>
+                    <div class="award-slide" id="award-slide-2">
+                        <img src="img/pressrelease_02.jpg" alt="수상 내역 2" class="award-image" loading="lazy">
+                    </div>
+                    <div class="award-slide" id="award-slide-3">
+                        <img src="img/pressrelease_03.jpg" alt="수상 내역 3" class="award-image" loading="lazy">
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <button class="nav-btn" onclick="changeAwardSlide(-1)" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="currentAwardSlide(1)" id="dot1"></span>
+                        <span class="dot" onclick="currentAwardSlide(2)" id="dot2"></span>
+                        <span class="dot" onclick="currentAwardSlide(3)" id="dot3"></span>
+                    </div>
+                    <button class="nav-btn" onclick="changeAwardSlide(1)" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 문의하기 섹션 -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h3>문의하기</h3>
+            <p>브랜드누누와 함께 성장하세요</p>
+            <div class="contact-content">
+                <div class="kakao-contact">
+                    <div class="contact-buttons">
+                        <a href="http://pf.kakao.com/_YxlXDn" target="_blank" class="contact-btn kakao-btn">
+                            <i class="fas fa-comment"></i>
+                            <span>카카오톡 문의</span>
+                        </a>
+                        <a href="tel: 1600-3070" class="contact-btn phone-btn">
+                            <i class="fas fa-phone"></i>
+                            <span>전화 문의</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="이름" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="연락처" required>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label style="color: #fff;">
+                                <input type="checkbox" required>
+                                <span style="color: #fff;">개인정보활용동의</span>
+                                <button type="button" 
+                                        onclick="openModal('privacyModal')" 
+                                        style="margin-left:8px; background:transparent; border:none; color:#ffd700; cursor:pointer; font-size:0.95em; vertical-align:middle;">
+                                    더보기
+                                </button>
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn">문의하기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-info">
+                    <p>상호 : 브랜드누누</p>
+                    <p>광고주의 성장이 곧 우리의 성장</p>
+                </div>
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="company.html">회사소개</a></li>
+                        <li><a href="product.html">상품안내</a></li>
+                        <li><a href="press.html">언론보도</a></li>
+                        <li><a href="#contact">문의하기</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="javascript:void(0)" onclick="openModal('privacyModal')">개인정보처리방침</a>
+                    <span>|</span>
+                    <a href="javascript:void(0)" onclick="openModal('termsModal')">이용약관</a>
+                </div>
+                <p>대표자 : 최정인</p>
+                <p>사업자등록번호 : 208-08-97217</p>
+                <p>주소 : 경기도 시흥시 서울대학로77, 616호</p>
+                <p>대표전화 : 1600-3070</p>
+                <p>이메일 : cji.brandnunu@gmail.com</p>
+                <p>COPYRIGHTⓒ 2025 브랜드누누 ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모달 컨테이너 -->
+    <div id="modals-container"></div>
+
+    <!-- 고정 플로팅 버튼 -->
+    <div class="floating-buttons">
+        <a href="http://pf.kakao.com/_YxlXDn" target="_blank" class="floating-btn kakao-float" title="카카오톡 문의">
+            <i class="fas fa-comment"></i>
+            <span class="btn-text">카톡</span>
+        </a>
+        <a href="tel: 1600-3070" class="floating-btn phone-float" title="전화 문의">
+            <i class="fas fa-phone"></i>
+            <span class="btn-text">전화</span>
+        </a>
+    </div>
+
+    <script src="script.js?v=20250120_5"></script>
+    
+    <script>
+    // Press 슬라이드 전용 스크립트
+    let currentPressSlideIndex = 0;
+    const totalPressSlides = 3;
+    
+    function changePressSlide(direction) {
+        console.log('changePressSlide 호출됨:', direction);
+        
+        // 모든 press 슬라이드 숨기기
+        document.getElementById('press-slide-1').style.display = 'none';
+        document.getElementById('press-slide-2').style.display = 'none';
+        document.getElementById('press-slide-3').style.display = 'none';
+        
+        // 모든 press 도트 비활성화
+        document.getElementById('press-dot1').classList.remove('active');
+        document.getElementById('press-dot2').classList.remove('active');
+        document.getElementById('press-dot3').classList.remove('active');
+        
+        // 다음 슬라이드 인덱스 계산
+        currentPressSlideIndex += direction;
+        
+        if (currentPressSlideIndex >= totalPressSlides) {
+            currentPressSlideIndex = 0;
+        } else if (currentPressSlideIndex < 0) {
+            currentPressSlideIndex = totalPressSlides - 1;
+        }
+        
+        // 새 슬라이드 활성화
+        document.getElementById('press-slide-' + (currentPressSlideIndex + 1)).style.display = 'block';
+        document.getElementById('press-dot' + (currentPressSlideIndex + 1)).classList.add('active');
+        
+        console.log('Press 슬라이드 변경 완료, 현재 인덱스:', currentPressSlideIndex);
+    }
+    
+    function currentPressSlide(slideNumber) {
+        console.log('currentPressSlide 호출됨:', slideNumber);
+        
+        // 모든 press 슬라이드 숨기기
+        document.getElementById('press-slide-1').style.display = 'none';
+        document.getElementById('press-slide-2').style.display = 'none';
+        document.getElementById('press-slide-3').style.display = 'none';
+        
+        // 모든 press 도트 비활성화
+        document.getElementById('press-dot1').classList.remove('active');
+        document.getElementById('press-dot2').classList.remove('active');
+        document.getElementById('press-dot3').classList.remove('active');
+        
+        // 새 슬라이드 인덱스 설정
+        currentPressSlideIndex = slideNumber - 1;
+        
+        // 새 슬라이드 활성화
+        document.getElementById('press-slide-' + slideNumber).style.display = 'block';
+        document.getElementById('press-dot' + slideNumber).classList.add('active');
+        
+        console.log('Press 도트 클릭으로 슬라이드 변경 완료, 현재 인덱스:', currentPressSlideIndex);
+    }
+    
+    // 수상 슬라이드 전용 스크립트
+    let currentAwardSlideIndex = 0;
+    const totalAwardSlides = 3;
+    
+    function changeAwardSlide(direction) {
+        console.log('changeAwardSlide 호출됨:', direction);
+        
+        // 모든 슬라이드 숨기기 (강제로)
+        const slide1 = document.getElementById('award-slide-1');
+        const slide2 = document.getElementById('award-slide-2');
+        const slide3 = document.getElementById('award-slide-3');
+        
+        slide1.style.display = 'none';
+        slide1.classList.remove('active');
+        slide2.style.display = 'none';
+        slide2.classList.remove('active');
+        slide3.style.display = 'none';
+        slide3.classList.remove('active');
+        
+        // 모든 도트 비활성화
+        document.getElementById('dot1').classList.remove('active');
+        document.getElementById('dot2').classList.remove('active');
+        document.getElementById('dot3').classList.remove('active');
+        
+        // 다음 슬라이드 인덱스 계산
+        currentAwardSlideIndex += direction;
+        
+        if (currentAwardSlideIndex >= totalAwardSlides) {
+            currentAwardSlideIndex = 0;
+        } else if (currentAwardSlideIndex < 0) {
+            currentAwardSlideIndex = totalAwardSlides - 1;
+        }
+        
+        // 새 슬라이드 활성화 (강제로)
+        const newSlide = document.getElementById('award-slide-' + (currentAwardSlideIndex + 1));
+        newSlide.style.display = 'block';
+        newSlide.classList.add('active');
+        
+        document.getElementById('dot' + (currentAwardSlideIndex + 1)).classList.add('active');
+        
+        console.log('슬라이드 변경 완료, 현재 인덱스:', currentAwardSlideIndex);
+        console.log('활성화된 슬라이드:', newSlide.id);
+    }
+    
+    function currentAwardSlide(slideNumber) {
+        console.log('currentAwardSlide 호출됨:', slideNumber);
+        
+        // 모든 슬라이드 숨기기 (강제로)
+        const slide1 = document.getElementById('award-slide-1');
+        const slide2 = document.getElementById('award-slide-2');
+        const slide3 = document.getElementById('award-slide-3');
+        
+        slide1.style.display = 'none';
+        slide1.classList.remove('active');
+        slide2.style.display = 'none';
+        slide2.classList.remove('active');
+        slide3.style.display = 'none';
+        slide3.classList.remove('active');
+        
+        // 모든 도트 비활성화
+        document.getElementById('dot1').classList.remove('active');
+        document.getElementById('dot2').classList.remove('active');
+        document.getElementById('dot3').classList.remove('active');
+        
+        // 새 슬라이드 인덱스 설정
+        currentAwardSlideIndex = slideNumber - 1;
+        
+        // 새 슬라이드 활성화 (강제로)
+        const newSlide = document.getElementById('award-slide-' + slideNumber);
+        newSlide.style.display = 'block';
+        newSlide.classList.add('active');
+        
+        document.getElementById('dot' + slideNumber).classList.add('active');
+        
+        console.log('도트 클릭으로 슬라이드 변경 완료, 현재 인덱스:', currentAwardSlideIndex);
+        console.log('활성화된 슬라이드:', newSlide.id);
+    }
+    
+    // 페이지 로드 시 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('슬라이드 초기화 시작');
+        
+        // Press 슬라이드 초기화
+        document.getElementById('press-slide-1').style.display = 'block';
+        document.getElementById('press-slide-2').style.display = 'none';
+        document.getElementById('press-slide-3').style.display = 'none';
+        
+        document.getElementById('press-dot1').classList.add('active');
+        document.getElementById('press-dot2').classList.remove('active');
+        document.getElementById('press-dot3').classList.remove('active');
+        
+        currentPressSlideIndex = 0;
+        
+        // 수상 슬라이드 초기화
+        const awardSlide1 = document.getElementById('award-slide-1');
+        const awardSlide2 = document.getElementById('award-slide-2');
+        const awardSlide3 = document.getElementById('award-slide-3');
+        
+        awardSlide1.style.display = 'block';
+        awardSlide1.classList.add('active');
+        awardSlide2.style.display = 'none';
+        awardSlide2.classList.remove('active');
+        awardSlide3.style.display = 'none';
+        awardSlide3.classList.remove('active');
+        
+        document.getElementById('dot1').classList.add('active');
+        document.getElementById('dot2').classList.remove('active');
+        document.getElementById('dot3').classList.remove('active');
+        
+        currentAwardSlideIndex = 0;
+        
+        console.log('모든 슬라이드 초기화 완료');
+    });
+    </script>
+    
+    <!-- 모바일 메뉴 스크립트 -->
+    <script>
+        // 모바일 메뉴 함수들 정의
+        function openMobileMenu() {
+            console.log('모바일 메뉴 열기');
+            const mainNav = document.querySelector('.main-nav');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const toggle = document.getElementById('mobileMenuToggle');
+            
+            if (mainNav) {
+                mainNav.classList.add('mobile-open', 'active');
+            }
+            if (overlay) {
+                overlay.classList.add('active');
+            }
+            if (toggle) {
+                toggle.classList.add('active');
+            }
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            console.log('모바일 메뉴 닫기');
+            const mainNav = document.querySelector('.main-nav');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const toggle = document.getElementById('mobileMenuToggle');
+            
+            if (mainNav) {
+                mainNav.classList.remove('mobile-open', 'active');
+            }
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
+            if (toggle) {
+                toggle.classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+        
+        // 전역 함수로 등록
+        window.openMobileMenu = openMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
+        
+        // 모바일 메뉴 토글 버튼 이벤트 리스너 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM 로드 완료, 모바일 메뉴 설정 시작');
+            
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (mobileMenuToggle && mainNav) {
+                console.log('모바일 메뉴 요소들 찾음');
+                
+                // 모바일 메뉴 오버레이 생성
+                let overlay = document.querySelector('.mobile-menu-overlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.className = 'mobile-menu-overlay';
+                    document.body.appendChild(overlay);
+                    console.log('모바일 메뉴 오버레이 생성');
+                }
+                
+                // 햄버거 메뉴 클릭 이벤트
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('모바일 메뉴 버튼 클릭됨');
+                    
+                    const isOpen = mainNav.classList.contains('mobile-open');
+                    console.log('현재 메뉴 상태:', isOpen ? '열림' : '닫힘');
+                    
+                    if (isOpen) {
+                        closeMobileMenu();
+                    } else {
+                        openMobileMenu();
+                    }
+                });
+                
+                // 드롭다운 토글 기능
+                const dropdownToggles = mainNav.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('드롭다운 토글 클릭됨');
+                        
+                        const dropdown = this.parentElement;
+                        const isActive = dropdown.classList.contains('active');
+                        
+                        // 다른 드롭다운 닫기
+                        document.querySelectorAll('.dropdown').forEach(dd => {
+                            if (dd !== dropdown) {
+                                dd.classList.remove('active');
+                            }
+                        });
+                        
+                        // 현재 드롭다운 토글
+                        if (isActive) {
+                            dropdown.classList.remove('active');
+                        } else {
+                            dropdown.classList.add('active');
+                        }
+                    });
+                });
+                
+                // 메뉴 클릭 시 active 클래스 추가
+                const menuLinks = mainNav.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        // 모든 메뉴에서 active 클래스 제거
+                        menuLinks.forEach(l => l.classList.remove('active'));
+                        
+                        // 클릭된 메뉴에 active 클래스 추가
+                        this.classList.add('active');
+                        
+                        // 드롭다운 메뉴 아이템인 경우 부모 드롭다운도 active로 설정
+                        const dropdownMenu = this.closest('.dropdown-menu');
+                        if (dropdownMenu) {
+                            const dropdown = dropdownMenu.closest('.dropdown');
+                            if (dropdown) {
+                                dropdown.classList.add('active');
+                            }
+                        }
+                    });
+                });
+                
+                // 현재 페이지 메뉴 활성화
+                const currentPage = window.location.pathname;
+                const pressLink = mainNav.querySelector('a[href="press.html"]');
+                if (currentPage.endsWith('press.html')) {
+                    if (pressLink) {
+                        pressLink.classList.add('active');
+                    }
+                }
+                
+                console.log('모바일 메뉴 이벤트 리스너 설정 완료');
+            } else {
+                console.log('모바일 메뉴 요소들을 찾을 수 없음');
+            }
+        });
+    </script>
+    
+    <!-- 모달 컨테이너 -->
+    <div id="modals-container"></div>
+    
+    <!-- 모달 동적 로드 및 함수 -->
+    <script>
+        // 모달 HTML 동적 로드
+        function loadModals() {
+            fetch('modals.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('modals-container').innerHTML = html;
+                    console.log('모달 HTML 로드 완료');
+                })
+                .catch(error => {
+                    console.error('모달 로드 실패:', error);
+                });
+        }
+        
+        // 페이지 로드 시 모달 로드
+        document.addEventListener('DOMContentLoaded', function() {
+            loadModals();
+        });
+    </script>
+</body>
+</html>
